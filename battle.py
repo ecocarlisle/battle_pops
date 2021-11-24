@@ -20,9 +20,15 @@ def get_player_move_files(player):
         all_text = file.read()
         all_text = all_text[:-1]
         player_moves = list(map(str, all_text.split('\n')))
+        read_player_moves(player, player_moves)
 
-    whole_number = random.randint(0, 4)
-    print(player, whole_number, player_moves[whole_number])
+
+def read_player_moves(player, player_moves):
+    try:
+        whole_number = random.randint(0, 3)
+        print(player, whole_number, player_moves[whole_number])
+    except Exception as e:
+        print("error in main routine:", e.args)
 
 
 def battle(player):
