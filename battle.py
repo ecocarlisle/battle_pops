@@ -1,23 +1,32 @@
+import random
+
+
 def main():
-    player1 = input("State your name PLAYER 1:")
-    player2 = input("State your name PLAYER 2:")
-    battle(player1)
-    battle(player2)
+    try:
+        print("Let the battle begin %s!")
+        player1 = "FartMomz"
+        player2 = "PurpleNurple"
+        battle(player1)
+        battle(player2)
+    except Exception as e:
+        print("error in main routine:", e.args)
 
 
-def get_player_moves(player):
-    print(player)
-    filename = player + '_battle_moves.txt'
+def get_player_move_files(player):
+    file_dir = "battle_moves/"
+    filename = file_dir + player + '_battle_moves.txt'
+    print(filename)
     with open(filename, "r") as file:
         all_text = file.read()
         all_text = all_text[:-1]
-        player_moves = list(map(str, all_text.split(',')))
-    print(len(player_moves))
+        player_moves = list(map(str, all_text.split('\n')))
+
+    whole_number = random.randint(0, 4)
+    print(player, whole_number, player_moves[whole_number])
 
 
 def battle(player):
-    print("Let the battle begin %s!" % player)
-    get_player_moves(player)
+    get_player_move_files(player)
 
 
 if __name__ == '__main__':
